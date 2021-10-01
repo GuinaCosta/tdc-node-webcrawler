@@ -105,4 +105,5 @@ dist
 
 # result
 *.csv
+# test file
 *.txt

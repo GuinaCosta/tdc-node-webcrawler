@@ -1,0 +1,23 @@
+{
+  "name": "tdc-node-webcrawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuinaCosta/tdc-node-webcrawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuinaCosta/tdc-node-webcrawler/issues"
+  },
+  "homepage": "https://github.com/GuinaCosta/tdc-node-webcrawler#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "request": "^2.88.2"
+  }
+}
