@@ -37,7 +37,8 @@ function trackOldEditions() {
 }
 
 function track2023Editions() {
-    const editions = ['https://thedevconf.com/tdc/2023/connections/belo-horizonte', 'https://thedevconf.com/tdc/2023/connections/recife']
+    //const editions = ['https://thedevconf.com/tdc/2023/connections/belo-horizonte', 'https://thedevconf.com/tdc/2023/connections/recife']
+    const editions = ['https://thedevconf.com/tdc/2023/business']
 
 
     editions.forEach((edition) => {
@@ -47,6 +48,15 @@ function track2023Editions() {
             const $ = cheerio.load(body);
 
             $('div#grade-basic a').each((_item, element) => {
+                if (element && !element.href?.indexOf('trilhas-de-patrocinadores')) {
+                    allTracks.push({
+                        link: 'https://thedevconf.com' + element.attribs.href,
+                        trackName: element.attribs.href.split('/')[TRACKNAME_IN_URL_POSITION],
+                        location: edition.split('/')[LOCATION_IN_URL_POSITION]
+                    });
+                }
+            });
+            $('div#grade-premium a').each((_item, element) => {
                 if (element && !element.href?.indexOf('trilhas-de-patrocinadores')) {
                     allTracks.push({
                         link: 'https://thedevconf.com' + element.attribs.href,
@@ -75,7 +85,7 @@ function parseTracks() {
                     const enterprise = $(element).find('small span');
 
                     if (name.length && enterprise.length) {
-                        console.log(`${name[0].firstChild.data.trim()},${enterprise[0].firstChild.data.trim()},${track.trackName},${track.location}`);
+                        //console.log(`${name[0].firstChild.data.trim()},${enterprise[0].firstChild.data.trim()},${track.trackName},${track.location}`);
                         fs.appendFile(fileName, `${name[0].firstChild.data.trim()},${enterprise[0].firstChild.data.trim()},${track.trackName},${track.location}${os.EOL}`,
                             csvErr => {
                                 if (csvErr) {
